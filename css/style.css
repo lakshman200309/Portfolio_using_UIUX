@@ -1,0 +1,167 @@
+/* css/style.css */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f7fa;
+  color: #1a1a1a;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background-color: #0d47a1;
+  color: white;
+}
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: #2196f3;
+  color: white;
+}
+.skills, .projects-preview, .projects-list, .contact-form {
+  padding: 40px 20px;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+.project-card {
+  background: white;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.btn {
+  display: inline-block;
+  background-color: #ff5722;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 16px;
+}
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #0d47a1;
+  color: white;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  margin: auto;
+}
+input, textarea {
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+button {
+  background: #0d47a1;
+  color: white;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.social-links {
+  text-align: center;
+  margin-top: 24px;
+}
+.social-links a {
+  margin: 0 8px;
+  text-decoration: none;
+  color: #0d47a1;
+}
+.about, .education, .experience, .internships, .hobbies {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.education ul.timeline {
+  list-style: disc;
+  margin-left: 20px;
+}
+
+.skills-section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.skills-section ul {
+  list-style: square;
+  padding-left: 20px;
+}
+
+.exp-entry {
+  margin-bottom: 20px;
+}
+.hover-box {
+  background-color: #ffffff;
+  padding: 24px;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 1000px;
+}
+
+.hover-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+.projects-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.project-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+body.dark-mode .project-card {
+  background-color: #2e2e2e;
+  color: #f0f0f0;
+}
+
+.animated {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+// js/script.js (Optional for interaction)
+// You can add form validation or interactivity here

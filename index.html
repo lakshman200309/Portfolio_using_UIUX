@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --bg-light: #f9f9f9;
+      --bg-dark: #1a1a1a;
+      --text-light: #1a1a1a;
+      --text-dark: #f0f0f0;
+      --box-light: #ffffff;
+      --box-dark: #2a2a2a;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.3s, color 0.3s;
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    .hover-box {
+      background-color: var(--box-light);
+      padding: 24px;
+      margin: 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+      max-width: 1000px;
+      color: var(--text-light);
+    }
+
+    body.dark-mode .hover-box {
+      background-color: var(--box-dark);
+      color: var(--text-dark);
+    }
+
+    .hover-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .skills-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .technical-skills, .soft-skills {
+      flex: 1 1 45%;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .technical-skills {
+      background-color: #e3f2fd;
+    }
+
+    .soft-skills {
+      background-color: #fce4ec;
+    }
+
+    body.dark-mode .technical-skills {
+      background-color: #3a4a5a;
+      color: var(--text-dark);
+    }
+
+    body.dark-mode .soft-skills {
+      background-color: #5a3a4a;
+      color: var(--text-dark);
+    }
+
+    .about { background-color: #f0f4c3; }
+    .education { background-color: #e1f5fe; }
+    .experience { background-color: #ede7f6; }
+    .internships { background-color: #fff3e0; }
+    .hobbies { background-color: #fce4ec; }
+    .projects-preview { background-color: #f3e5f5; }
+
+    body.dark-mode .about,
+    body.dark-mode .education,
+    body.dark-mode .experience,
+    body.dark-mode .internships,
+    body.dark-mode .hobbies,
+    body.dark-mode .projects-preview {
+      background-color: var(--box-dark);
+      color: var(--text-dark);
+    }
+
+    .project-card {
+      background-color: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      color: var(--text-light);
+    }
+
+    body.dark-mode .project-card {
+      background-color: #3b3b3b;
+      color: var(--text-dark);
+    }
+
+    .toggle-mode {
+      position: fixed;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      padding: 10px 16px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    @media (max-width: 1024px) {
+      .hover-box {
+        width: 90%;
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .skills-section {
+        flex-direction: column;
+      }
+
+      .toggle-mode {
+        top: auto;
+        bottom: 10px;
+        right: 10px;
+        transform: none;
+      }
+
+      .hover-box {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .project-card, .technical-skills, .soft-skills {
+        font-size: 0.95rem;
+      }
+      .toggle-mode {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+      }
+    }
+
+    .hero {
+      text-align: center;
+      padding: 50px 20px 30px;
+      background-color: #2196f3;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-top: 20px;
+      animation: slideIn 1.5s ease-out;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .welcome {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1rem;
+      background-color: rgba(255,255,255,0.2);
+      padding: 6px 12px;
+      border-radius: 10px;
+      animation: fadeIn 3s ease-in-out forwards;
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-mode" onclick="toggleMode()">🌓</button>
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+
+  <header>
+    <nav>
+      <div class="logo">Lakshman Personal Portfolio</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="welcome">👋 Welcome to my portfolio!</div>
+    <img src="images/profile.jpg" alt="Lakshman" class="profile-pic">
+    <h1>Hi, I'm Lakshman</h1>
+    <p>Aspiring Software Developer</p>
+    <a href="#projects" class="btn">View My Work</a>
+  </section>
+
+  <div class="hover-box about">
+    <section>
+      <h2>About Me</h2>
+      <p>
+        I am Tumu Lakshman Prasanna Kumar, a passionate Computer Science postgraduate student at Koneru Lakshmaiah Education Foundation specializing in Artificial Intelligence. With hands-on experience in Data Science, AI, and web development, I aim to apply my knowledge to build intelligent, impactful solutions.
+      </p>
+      <a href="https://drive.google.com/file/d/1_ttJ5JSWzW2ZubEzupUXRwvL99H8-Ew8/view?usp=sharing" class="btn" download>Download Resume</a>
+    </section>
+  </div>
+
+  <div class="hover-box education">
+    <section>
+      <h2>Education</h2>
+      <ul class="timeline">
+        <li><strong>MCA in AI</strong> – KL University (2023–2025), CGPA: 9.41</li>
+        <li><strong>BSc (MSCS)</strong> – Siddhartha College (2020–2023), CGPA: 7.96</li>
+        <li><strong>Intermediate (MPC)</strong> – Maruthi Jr. College (2018–2020), CGPA: 9.19</li>
+        <li><strong>SSC</strong> – St. Thomas High School (2018), CGPA: 9.7</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="hover-box experience">
+    <section>
+      <h2>Work Experience</h2>
+      <div class="exp-entry">
+        <h3>Prompt Personnel (DMart)</h3>
+        <p>Feb 2025 – Apr 2025 | Stock management, customer support, inventory handling.</p>
+      </div>
+      <div class="exp-entry">
+        <h3>Reliance Retail Limited</h3>
+        <p>Nov 2022 – Aug 2023 | Customer support, upselling, CRM handling, issue resolution.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="hover-box internships">
+    <section>
+      <h2>Internships</h2>
+      <ul>
+        <li><strong>Data Science & Analytics</strong> – INNOVATE Company (10 weeks): Traffic prediction project, analytics & modeling.</li>
+        <li><strong>Artificial Intelligence</strong> – Pantech eLearning (4 weeks): Practical AI exposure through real-world case studies.</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="hover-box">
+    <section class="skills">
+      <h2>Skills</h2>
+      <div class="skills-section">
+        <div class="technical-skills">
+          <h4>Technical Skills</h4>
+          <ul>
+            <li>Python, Java</li>
+            <li>HTML, CSS, SQL</li>
+            <li>Data Analysis (Pandas, NumPy)</li>
+            <li>Tools: Scikit-learn, OpenCV, Flask</li>
+          </ul>
+        </div>
+        <div class="soft-skills">
+          <h4>Soft Skills</h4>
+          <ul>
+            <li>Problem Solving</li>
+            <li>Communication</li>
+            <li>Adaptability</li>
+            <li>Team Work</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="hover-box hobbies">
+    <section>
+      <h2>Hobbies & Interests</h2>
+      <p>Drawing, Cooking, Writing, Music, AI Podcasts & Research</p>
+    </section>
+  </div>
+
+  <div class="hover-box projects-preview">
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project-card">
+        <h3>Plant Disease Detector</h3>
+        <p>Python, Flask, HTML/CSS</p>
+        <a href="projects.html">Read more</a>
+      </div>
+      <div class="project-card">
+        <h3>Online Bookstore</h3>
+        <p>Flask, SQL, JavaScript</p>
+        <a href="projects.html">Read more</a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Tumu Lakshman Prasanna Kumar</p>
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+</html>
